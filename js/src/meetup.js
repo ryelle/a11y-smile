@@ -34,7 +34,7 @@ window.Smile = window.Smile || {};
 		$.ajax( 'https://api.meetup.com/2/events', {
 			data: {
 				access_token: token,
-				rsvp: 'yes'
+				rsvp: "yes,waitlist,maybe,none"
 			},
 			dataType: 'jsonp',
 			success: Smile.Meetup.renderEvents
