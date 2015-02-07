@@ -1,0 +1,51 @@
+@import 'normalize';
+@import 'main';
+
+$color__border: #ccc;
+
+$color__status-unknown: yellow;
+$color__status-yes:     blue;
+$color__status-no:      red;
+
+.site {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.page-title {
+	text-align: center;
+}
+
+.import-events {
+	text-align: center;
+	li {
+		display: inline-block;
+		margin: 0 25px;
+	}
+}
+
+#event-list {
+	.event {
+		border-bottom: 1px solid $color__border;
+	}
+	h3 {
+		text-transform: capitalize;
+	}
+	.a11y-status {
+		font-weight: bold;
+	}
+	[data-a11y='yes'] {
+		color: $color__status-yes;
+	}
+	[data-a11y='no'] {
+		color: $color__status-no;
+	}
+	[data-a11y='unknown'] {
+		color: $color__status-unknown;
+	}
+
+	.pano {
+		width: 100%;
+		min-height: 60vh;
+	}
+}

@@ -1,0 +1,53 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+<div class="site">
+	<h1 class="page-title">SMILE</h1>
+
+	<!-- <img src="http://placehold.it/1000x250&amp;text=Fun+Image!" /> -->
+	<section class="import-events">
+		<h2>Import events from</h2>
+		<ul>
+			<li><fb:login-button scope="public_profile,email,user_events" onlogin="Smile.FB.checkLoginState();"></fb:login-button></li>
+			<li class="meetup-login"><img src="img/meetup-logo.png" style="width:70px;"/></li>
+			<li>Eventbrite</li>
+		</ul>
+	</section>
+
+	<div id="event-list"></div>
+
+	<script type="text/html" id="tmpl-event">
+		<div class="event" id="{{data.service}}-{{data.id}}">
+			<div class="a11y-status" data-a11y="{{data.a11y}}">
+				<h3>{{data.service}}: {{data.name}}</h3>
+				<div class="pano" data-lat="{{data.venue.latitude}}" data-long="{{data.venue.longitude}}"></div>
+				<p>{{data.venue.name}}<br />
+				{{data.venue.street}}, {{data.venue.city}} {{data.venue.state}}</p>
+			</div>
+		</div>
+	</script>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&mp;signed_in=true"></script>
+	<script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
+	<script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
+
+	<script src="js/vendor/underscore-1.7.0.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/main.js"></script>
+</div><!-- /.site -->
+</body>
+</html>
