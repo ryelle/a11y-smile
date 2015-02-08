@@ -21,6 +21,25 @@ window.Smile = window.Smile || {};
 		$( document.getElementById( 'event-list' ) ).append( _event( event ) );
 	};
 
+	Smile.getWeekday = function( date ){
+		switch ( date.getDay() ) {
+			case 1:
+				return "Mon";
+			case 2:
+				return "Tue";
+			case 3:
+				return "Wed";
+			case 4:
+				return "Thu";
+			case 5:
+				return "Fri";
+			case 6:
+				return "Sat";
+			case 0:
+				return "Sun";
+		}
+	}
+
 }( jQuery ) );
 
 window.Smile = window.Smile || {};
@@ -64,6 +83,7 @@ window.Smile = window.Smile || {};
 			}
 			response.service = 'facebook';
 			response.a11y = 'unknown';
+			response.time = response.start_time;
 			response.venue.name = response.location;
 			Smile.renderEvent( response );
 
@@ -197,10 +217,20 @@ window.Smile = window.Smile || {};
 	}
 
 	Smile.a11y.weather = function( event, data ){
+		// Only get weather for upcoming events
+		if ( ! data.time ){
+			return;
+		}
+		var d = new Date( data.time ),
+			offset = 3 * 86400 * 1000; // 2 Days in miliseconds
+		if ( d.getTime() > ( Date.now() + offset ) ) {
+			return;
+		}
+
 		var element = document.getElementById( data.service + '-' + data.id ).querySelector( '.weather' ),
 			url = weather_url + data.venue.state + '/' + data.venue.city + '.json';
 
-		console.log( url );
+		// console.log( url );
 		$.ajax({
 			url: url,
 			dataType: 'jsonp',
@@ -208,8 +238,17 @@ window.Smile = window.Smile || {};
 				if ( data.error ) {
 					return;
 				}
-				var _weather = Smile.template( 'weather' );
-				$( element ).html( _weather( data.forecast.txt_forecast.forecastday[0] ) );
+				var _weather = Smile.template( 'weather' ),
+					forecast;
+				_.each( data.forecast.simpleforecast.forecastday, function( day ){
+					if ( day.date.weekday_short == Smile.getWeekday(d) ){
+						forecast = day;
+						return;
+					}
+				});
+				if ( undefined !== forecast ) {
+					$( element ).html( _weather( forecast ) );
+				}
 			}
 		});
 	}

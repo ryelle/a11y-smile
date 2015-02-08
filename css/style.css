@@ -615,8 +615,12 @@ h1, h2, h3, h4, h5, h6 {
 #event-list h3 {
   text-transform: capitalize;
 }
+#event-list .forecast {
+  text-align: right;
+}
 #event-list .forecast img {
-  float: left;
+  margin-left: 20px;
+  float: right;
 }
 #event-list .pano {
   width: 100%;
@@ -631,4 +635,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 [data-a11y='unknown'] svg {
   color: #f39c12;
+}
+
+.grid {
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.grid .col {
+  width: 50%;
+  float: left;
 }

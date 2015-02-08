@@ -16,10 +16,20 @@ window.Smile = window.Smile || {};
 	}
 
 	Smile.a11y.weather = function( event, data ){
+		// Only get weather for upcoming events
+		if ( ! data.time ){
+			return;
+		}
+		var d = new Date( data.time ),
+			offset = 3 * 86400 * 1000; // 2 Days in miliseconds
+		if ( d.getTime() > ( Date.now() + offset ) ) {
+			return;
+		}
+
 		var element = document.getElementById( data.service + '-' + data.id ).querySelector( '.weather' ),
 			url = weather_url + data.venue.state + '/' + data.venue.city + '.json';
 
-		console.log( url );
+		// console.log( url );
 		$.ajax({
 			url: url,
 			dataType: 'jsonp',
@@ -27,8 +37,17 @@ window.Smile = window.Smile || {};
 				if ( data.error ) {
 					return;
 				}
-				var _weather = Smile.template( 'weather' );
-				$( element ).html( _weather( data.forecast.txt_forecast.forecastday[0] ) );
+				var _weather = Smile.template( 'weather' ),
+					forecast;
+				_.each( data.forecast.simpleforecast.forecastday, function( day ){
+					if ( day.date.weekday_short == Smile.getWeekday(d) ){
+						forecast = day;
+						return;
+					}
+				});
+				if ( undefined !== forecast ) {
+					$( element ).html( _weather( forecast ) );
+				}
 			}
 		});
 	}

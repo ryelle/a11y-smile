@@ -98,8 +98,10 @@ h1, h2, h3, h4, h5, h6 {
 	}
 
 	.forecast {
+		text-align: right;
 		img {
-			float: left;
+			margin-left: 20px;
+			float: right;
 		}
 	}
 
@@ -121,3 +123,11 @@ svg {
 	}
 }
 
+.grid {
+	overflow: hidden;
+	margin-bottom: 20px;
+	.col {
+		width: 50%;
+		float: left;
+	}
+}

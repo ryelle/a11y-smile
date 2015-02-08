@@ -37,10 +37,14 @@
 		<div class="event" id="{{data.service}}-{{data.id}}">
 			<div class="a11y-status container" data-a11y="{{data.a11y}}">
 				<h3 class="event-title">{{data.service}}: {{data.name}}</h3>
-				<div class="weather"></div>
+				<div class="grid">
+					<div class="address col">
+						<p>{{data.venue.name}}<br />
+						{{data.venue.street}}, {{data.venue.city}} {{data.venue.state}}</p>
+					</div>
+					<div class="weather col"></div>
+				</div>
 				<div class="pano" data-lat="{{data.venue.latitude}}" data-long="{{data.venue.longitude}}"></div>
-				<p>{{data.venue.name}}<br />
-				{{data.venue.street}}, {{data.venue.city}} {{data.venue.state}}</p>
 			</div>
 		</div>
 	</script>
@@ -48,7 +52,7 @@
 	<script type="text/html" id="tmpl-weather">
 		<div class="forecast">
 			<img src="{{data.icon_url}}" />
-			<p>{{data.fcttext}}</p>
+			<p>{{data.conditions}}, {{data.high.fahrenheit}} / {{data.low.fahrenheit}} F</p>
 		</div>
 	</script>
 

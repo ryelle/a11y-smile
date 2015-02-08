@@ -39,6 +39,7 @@ window.Smile = window.Smile || {};
 			}
 			response.service = 'facebook';
 			response.a11y = 'unknown';
+			response.time = response.start_time;
 			response.venue.name = response.location;
 			Smile.renderEvent( response );
 
