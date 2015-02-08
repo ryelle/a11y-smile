@@ -1,47 +1,106 @@
 @import 'normalize';
 @import 'main';
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic);
 
-$color__border: #ccc;
+$color__border: rgba( black, 0.25 );
 
-$color__status-unknown: yellow;
-$color__status-yes:     blue;
-$color__status-no:      red;
+$color__status-unknown: #f39c12;
+$color__status-yes:     #3498db;
+$color__status-no:      #c0392b;
 
-.site {
+$font__header: "brandon-grotesque", serif;
+$font__main: Open Sans, sans-serif;
+
+body {
+	font-family: $font__main;
+	font-weight: 300;
+	background: #ecf0f1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $font__header;
+	font-weight: 900;
+}
+
+.container {
 	max-width: 1000px;
 	margin: 0 auto;
 }
 
 .page-title {
+	margin: 50px 0 25px;
+	font-size: 56px;
+	text-align: center;
+}
+
+.event-title {
+	margin: 0 0 25px;
+	font-size: 42px;
 	text-align: center;
 }
 
 .import-events {
+	margin-bottom: 30px;
 	text-align: center;
+
+	h2 {
+		font-size: 32px;
+	}
+
 	li {
 		display: inline-block;
+		vertical-align: middle;
+		height: 60px;
 		margin: 0 25px;
+
+		button {
+			border: none;
+			text-indent: -9999em;
+
+			&[disabled='disabled'] {
+				opacity: 0.5;
+			}
+		}
+	}
+
+	.facebook-login {
+		width: 125px;
+
+		.fb_iframe_widget {
+			margin-top: 10px;
+		}
+	}
+
+	.meetup-login button {
+		width: 70px;
+		height: 60px;
+		background: url( '../img/meetup-logo.png' ) no-repeat center;
+		background-size: contain;
+	}
+
+	.eventbrite-login button {
+		width: 120px;
+		height: 50px;
+		background: url( '../img/eventbrite-logo.png' ) no-repeat center;
+		background-size: contain;
 	}
 }
 
 #event-list {
+	border-top: 1px solid $color__border;
+
 	.event {
+		padding: 25px 0;
 		border-bottom: 1px solid $color__border;
 	}
 	h3 {
 		text-transform: capitalize;
 	}
-	.a11y-status {
-		font-weight: bold;
-	}
-	[data-a11y='yes'] {
-		color: $color__status-yes;
-	}
-	[data-a11y='no'] {
-		color: $color__status-no;
-	}
-	[data-a11y='unknown'] {
-		color: $color__status-unknown;
+
+	.forecast {
+		img {
+			float: left;
+		}
 	}
 
 	.pano {
@@ -49,3 +108,16 @@ $color__status-no:      red;
 		min-height: 60vh;
 	}
 }
+
+svg {
+	[data-a11y='yes'] & {
+		color: $color__status-yes;
+	}
+	[data-a11y='no'] & {
+		color: $color__status-no;
+	}
+	[data-a11y='unknown'] & {
+		color: $color__status-unknown;
+	}
+}
+

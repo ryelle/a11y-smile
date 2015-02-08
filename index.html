@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="" xmlns:fb="http://ogp.me/ns/fb#">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,6 +11,8 @@
 
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+	<script src="//use.typekit.net/pmb4qvp.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
 </head>
 <body>
 <div class="site">
@@ -18,24 +20,35 @@
 
 	<!-- <img src="http://placehold.it/1000x250&amp;text=Fun+Image!" /> -->
 	<section class="import-events">
-		<h2>Import events from</h2>
-		<ul>
-			<li><fb:login-button scope="public_profile,email,user_events" onlogin="Smile.FB.checkLoginState();"></fb:login-button></li>
-			<li class="meetup-login"><img src="img/meetup-logo.png" style="width:70px;"/></li>
-			<li>Eventbrite</li>
-		</ul>
+		<div class="container">
+			<p>Plan your events by checking weather and previewing the space.</p>
+			<h2>Import events from&hellip;</h2>
+			<ul>
+				<li class="facebook-login"><fb:login-button size="xlarge" scope="public_profile,email,user_events" onlogin="Smile.FB.checkLoginState();"></fb:login-button></li>
+				<li class="meetup-login"><button>Meetup.com</button></li>
+				<li class="eventbrite-login"><button disabled="disabled">Eventbrite</button></li>
+			</ul>
+		</div>
 	</section>
 
 	<div id="event-list"></div>
 
 	<script type="text/html" id="tmpl-event">
 		<div class="event" id="{{data.service}}-{{data.id}}">
-			<div class="a11y-status" data-a11y="{{data.a11y}}">
-				<h3>{{data.service}}: {{data.name}}</h3>
+			<div class="a11y-status container" data-a11y="{{data.a11y}}">
+				<h3 class="event-title">{{data.service}}: {{data.name}}</h3>
+				<div class="weather"></div>
 				<div class="pano" data-lat="{{data.venue.latitude}}" data-long="{{data.venue.longitude}}"></div>
 				<p>{{data.venue.name}}<br />
 				{{data.venue.street}}, {{data.venue.city}} {{data.venue.state}}</p>
 			</div>
+		</div>
+	</script>
+
+	<script type="text/html" id="tmpl-weather">
+		<div class="forecast">
+			<img src="{{data.icon_url}}" />
+			<p>{{data.fcttext}}</p>
 		</div>
 	</script>
 

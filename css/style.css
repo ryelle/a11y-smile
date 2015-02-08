@@ -4,6 +4,7 @@
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic);
 html {
   font-family: sans-serif;
   /* 1 */
@@ -537,42 +538,97 @@ textarea {
   clear: both;
 }
 
-.site {
+body {
+  font-family: Open Sans, sans-serif;
+  font-weight: 300;
+  background: #ecf0f1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "brandon-grotesque", serif;
+  font-weight: 900;
+}
+
+.container {
   max-width: 1000px;
   margin: 0 auto;
 }
 
 .page-title {
+  margin: 50px 0 25px;
+  font-size: 56px;
+  text-align: center;
+}
+
+.event-title {
+  margin: 0 0 25px;
+  font-size: 42px;
   text-align: center;
 }
 
 .import-events {
+  margin-bottom: 30px;
   text-align: center;
+}
+.import-events h2 {
+  font-size: 32px;
 }
 .import-events li {
   display: inline-block;
+  vertical-align: middle;
+  height: 60px;
   margin: 0 25px;
 }
+.import-events li button {
+  border: none;
+  text-indent: -9999em;
+}
+.import-events li button[disabled='disabled'] {
+  opacity: 0.5;
+}
+.import-events .facebook-login {
+  width: 125px;
+}
+.import-events .facebook-login .fb_iframe_widget {
+  margin-top: 10px;
+}
+.import-events .meetup-login button {
+  width: 70px;
+  height: 60px;
+  background: url("../img/meetup-logo.png") no-repeat center;
+  background-size: contain;
+}
+.import-events .eventbrite-login button {
+  width: 120px;
+  height: 50px;
+  background: url("../img/eventbrite-logo.png") no-repeat center;
+  background-size: contain;
+}
 
+#event-list {
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+}
 #event-list .event {
-  border-bottom: 1px solid #cccccc;
+  padding: 25px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 #event-list h3 {
   text-transform: capitalize;
 }
-#event-list .a11y-status {
-  font-weight: bold;
-}
-#event-list [data-a11y='yes'] {
-  color: blue;
-}
-#event-list [data-a11y='no'] {
-  color: red;
-}
-#event-list [data-a11y='unknown'] {
-  color: yellow;
+#event-list .forecast img {
+  float: left;
 }
 #event-list .pano {
   width: 100%;
   min-height: 60vh;
+}
+
+[data-a11y='yes'] svg {
+  color: #3498db;
+}
+[data-a11y='no'] svg {
+  color: #c0392b;
+}
+[data-a11y='unknown'] svg {
+  color: #f39c12;
 }

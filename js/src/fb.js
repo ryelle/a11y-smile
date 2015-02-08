@@ -8,6 +8,7 @@ window.Smile = window.Smile || {};
 	Smile.FB.loginEvent = function( response ) {
 		if (response.status === 'connected') {
 			// Logged into your app and Facebook.
+			$( ".facebook-login" ).html( "Connected to Facebook" );
 			Smile.FB.loadEvents();
 		}
 	};
