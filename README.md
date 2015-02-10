@@ -14,3 +14,4 @@ License: GPL v3 http://www.gnu.org/licenses/gpl-3.0.txt
 
 - Integrate with Yelp to pull out the "Wheelchair Accessible" value for a venue
 - Add some way of leaving "accessibility reviews" that can also tag what accomadations a venue provides/what the experience is like (maybe there are no steps, but is there enough space inside for a scooter? if there is food, what dietary restrictions can they handle? is there a lot of background noise that might make it hard to focus on conversations? etc) *or* integrate into a service that does this, and allow people to send reviews ([open an issue if you know of a site that already does this, I can work with them on an API](https://github.com/ryelle/a11y-smile/issues))
+- Incorporate [REFUGE restrooms](https://github.com/RefugeRestrooms/refugerestrooms)
